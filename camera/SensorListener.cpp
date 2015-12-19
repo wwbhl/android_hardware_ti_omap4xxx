@@ -132,7 +132,11 @@ SensorListener::~SensorListener() {
 
 status_t SensorListener::initialize() {
     status_t ret = NO_ERROR;
+#ifndef ANDROID_API_MM_OR_LATER
+    SensorManager& mgr(SensorManager::getInstanceForPackage(String16("TI OMAP CameraHal Module")));
+#else
     SensorManager& mgr(SensorManager::getInstance());
+#endif
 
     LOG_FUNCTION_NAME;
 
@@ -195,7 +199,11 @@ void SensorListener::handleOrientation(uint32_t orientation, uint32_t tilt) {
 
 void SensorListener::enableSensor(sensor_type_t type) {
     Sensor const* sensor;
+#ifndef ANDROID_API_MM_OR_LATER
+    SensorManager& mgr(SensorManager::getInstanceForPackage(String16("TI OMAP CameraHal Module")));
+#else
     SensorManager& mgr(SensorManager::getInstance());
+#endif
 
     LOG_FUNCTION_NAME;
 
@@ -214,7 +222,11 @@ void SensorListener::enableSensor(sensor_type_t type) {
 
 void SensorListener::disableSensor(sensor_type_t type) {
     Sensor const* sensor;
+#ifndef ANDROID_API_MM_OR_LATER
+    SensorManager& mgr(SensorManager::getInstanceForPackage(String16("TI OMAP CameraHal Module")));
+#else
     SensorManager& mgr(SensorManager::getInstance());
+#endif
 
     LOG_FUNCTION_NAME;
 
